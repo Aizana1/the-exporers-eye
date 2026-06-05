@@ -2,7 +2,9 @@
 // Built on real British Museum Collection Online records for eight chosen objects,
 // two from each of four regions. Sir Richard Burton is the narrative guide.
 
-const SCORES = { firstTry: 3, afterHint: 2, afterStudy: 1, skip: 0 };
+// Scoring matches the Twine build: +10 for any correct answer
+// (first try or after a hint); study/skip earn nothing.
+const SCORES = { correct: 10, study: 0, skip: 0 };
 
 const REGIONS = [
   {

@@ -240,10 +240,8 @@ function handleAnswer(choiceIdx, btn) {
   if (correct) {
     btn.classList.add("correct");
     lockOptions();
-    let gained;
-    if (state.current.attempts === 0) gained = SCORES.firstTry;
-    else gained = SCORES.afterHint;
-    awardAndContinue(gained, gained === SCORES.firstTry
+    const firstTry = state.current.attempts === 0;
+    awardAndContinue(SCORES.correct, firstTry
       ? "Burton: \"Spot on, first try! A true explorer's eye.\""
       : "Burton: \"There it is — well reasoned after a nudge.\"");
     return;
@@ -281,7 +279,7 @@ function showStudyOrSkip() {
   studyBtn.addEventListener("click", () => {
     const q = currentObject().questions[state.current.questionIdx];
     setBurton(`<strong>The story:</strong> ${q.study}`);
-    awardAndContinue(SCORES.afterStudy, null, true);
+    awardAndContinue(SCORES.study, null, true);
   });
 
   const skipBtn = document.createElement("button");
