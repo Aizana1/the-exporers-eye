@@ -65,11 +65,14 @@ const screens = {
   quiz: $("screen-quiz"),
   regionDone: $("screen-region-done"),
   final: $("screen-final"),
-  diagrams: $("screen-diagrams")
+  diagrams: $("screen-diagrams"),
+  twine: $("screen-twine")
 };
 
 // Remember which screen to return to when leaving the diagrams view.
 let diagramsReturn = "welcome";
+// Remember which screen to return to when leaving the Twine view.
+let twineReturn = "welcome";
 
 function show(name) {
   Object.values(screens).forEach((s) => { s.hidden = true; s.classList.remove("active"); });
@@ -364,6 +367,20 @@ function closeDiagrams() {
   else show(diagramsReturn);
 }
 
+/* ---------- Twine version ---------- */
+function openTwine() {
+  // Find the currently visible screen so we can return to it.
+  const current = Object.keys(screens).find((k) => !screens[k].hidden);
+  if (current && current !== "twine") twineReturn = current;
+  show("twine");
+}
+
+function closeTwine() {
+  if (twineReturn === "welcome") show("welcome");
+  else if (twineReturn === "region") openRegion(state.current.regionIdx);
+  else show(twineReturn);
+}
+
 /* ---------- Reset ---------- */
 function resetGame() {
   state.score = 0;
@@ -384,5 +401,8 @@ $("playAgainBtn").addEventListener("click", resetGame);
 $("diagramsBtn").addEventListener("click", openDiagrams);
 $("welcomeDiagramsBtn").addEventListener("click", openDiagrams);
 $("diagramsBack").addEventListener("click", closeDiagrams);
+$("twineBtn").addEventListener("click", openTwine);
+$("welcomeTwineBtn").addEventListener("click", openTwine);
+$("twineBack").addEventListener("click", closeTwine);
 
 refreshStatus();

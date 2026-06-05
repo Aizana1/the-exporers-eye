@@ -1,0 +1,803 @@
+:: StoryTitle
+Project_game
+
+
+:: StoryData
+{
+  "ifid": "6BE6E52F-B102-4326-8544-A0C9DC959364",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "World map",
+  "tag-colors": {
+    "startup": "yellow"
+  },
+  "zoom": 1
+}
+
+
+:: Africa Done {"position":"1400,2250","size":"100,100"}
+*Burton:* "You have explored the great city of Ife. Africa is complete."
+
+**Region Completed!**
+
+(if: $africaDone is not true)[(set: $fragments to it + 1)(set: $africaDone to true)]
+[[Return to World Map->World map]]
+
+
+
+:: Africa Q1 {"position":"800,450","size":"100,100"}
+*Burton poses a question.*
+**Question 1 of 4: Burton examines a brass head from the Kingdom of Ife. Who is most likely represented by this Ife head?**
+
+[[A ruler or high-status figure from Ife, suggested by the elaborate crown and formal style->Africa Q1 ok]]
+
+(link: "An ordinary farmer from Ife, shown with tools and clothing used for agricultural work")[ (goto: "Africa Q1 no") ]
+
+(link: "A Benin court official from southern Nigeria, identified by coral regalia and palace bronze plaques")[ (goto: "Africa Q1 no") ]
+
+(link: "A Nok terracotta figure from central Nigeria, recognized by its ancient clay and geometric facial features")[ (goto: "Africa Q1 no") ]
+
+
+
+:: Africa Q1 no {"position":"1400,430","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Study the answer, or move on."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Africa Q1 study") ]
+(link: "MOVE ON")[ (set: $tries to 0) (goto: "Africa Q2") ]
+](else:)[
+*Burton:* "The serene face and beaded crown suggest someone of the very highest rank — not a common subject."
+[[Try again->Africa Q1]]
+]
+
+
+
+:: Africa Q1 ok {"position":"1400,300","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! It portrays a ruler or high-status figure.
+[[Next->Africa Q2]]
+
+
+
+:: Africa Q1 study {"position":"1400,560","size":"100,100"}
+(set: $tries to 0)
+*History:* The Ife heads are thought to portray rulers (the Ooni) or other high-status individuals from the ancient city of Ife, the spiritual heartland of the Yoruba people. The elaborate crowns and formal naturalism identify them as portraits of power, not ordinary citizens.
+
+[[Continue->Africa Q2]]
+
+
+
+:: Africa Q2 {"position":"1400,690","size":"100,100"}
+*Burton poses a question.*
+**Question 2 of 4: Why is this Ife head historically significant?**
+
+[[It shows the high artistic skill of Ife, Nigeria, and challenges the old European idea that complex naturalistic sculpture was mainly a feature of ancient Greece or Rome->Africa Q2 ok]]
+
+(link: "It proves that Ife artists copied Egyptian royal portraits during the reign of Ramesses II")[ (goto: "Africa Q2 no") ]
+
+(link: "It was supposedly the first African object ever collected by the British Museum")[ (goto: "Africa Q2 no") ]
+
+(link: "It was supposedly used as a modern theatrical mask in Britain")[ (goto: "Africa Q2 no") ]
+
+
+
+:: Africa Q2 no {"position":"1400,950","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Study the answer, or move on."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Africa Q2 study") ]
+(link: "MOVE ON")[ (set: $tries to 0) (goto: "Africa Q3") ]
+](else:)[
+*Burton:* "When European scholars first saw these heads, they refused to believe Africans had made them — what does that tell you?"
+[[Try again->Africa Q2]]
+]
+
+
+
+:: Africa Q2 ok {"position":"1400,820","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! It challenges Eurocentric assumptions about naturalistic art.
+[[Next->Africa Q3]]
+
+
+
+:: Africa Q2 study {"position":"1400,1080","size":"100,100"}
+(set: $tries to 0)
+*History:* When Ife heads became known to the wider world in the early 20th century, their naturalism was so remarkable that some Europeans falsely attributed them to outside influences. In fact they are the product of a sophisticated West African artistic tradition, and they powerfully challenge Eurocentric assumptions about where complex naturalistic sculpture could be created.
+
+[[Continue->Africa Q3]]
+
+
+
+:: Africa Q3 {"position":"1400,1210","size":"100,100"}
+*Burton poses a question.*
+**Question 3 of 4: Burton turns to a carved ceremonial mask. What was one possible function of this mask?**
+
+[[It may have been used to discourage unruly behaviour and was associated with a society that exercised judicial powers->Africa Q3 ok]]
+
+(link: "It may have been a public symbol during harvest festivals celebrating agricultural abundance")[ (goto: "Africa Q3 no") ]
+
+(link: "It may have been used in initiation ceremonies to teach young members about social rules")[ (goto: "Africa Q3 no") ]
+
+(link: "It may have been worn by warriors during victory ceremonies to display courage")[ (goto: "Africa Q3 no") ]
+
+
+
+:: Africa Q3 no {"position":"1400,1470","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Study the answer, or move on."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Africa Q3 study") ]
+(link: "MOVE ON")[ (set: $tries to 0) (goto: "Africa Q4") ]
+](else:)[
+*Burton:* "Think of authority — not military, but the kind that keeps order within a community."
+[[Try again->Africa Q3]]
+]
+
+
+
+:: Africa Q3 ok {"position":"1400,1340","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! It is linked to judicial authority and social order.
+[[Next->Africa Q4]]
+
+
+
+:: Africa Q3 study {"position":"1400,1600","size":"100,100"}
+(set: $tries to 0)
+*History:* Masks of this type are associated with societies that wielded judicial authority in their communities. Worn during ceremonies, they could be used to sanction, warn, or punish those who disrupted social order — combining spectacle with enforcement.
+
+[[Continue->Africa Q4]]
+
+
+
+:: Africa Q4 {"position":"1400,1730","size":"100,100"}
+*Burton poses a question.*
+**Question 4 of 4: Who would have worn this mask?**
+
+[[A wichi, a ritual specialist who put on and removed the mask in complete secrecy->Africa Q4 ok]]
+
+(link: "A senior member of a local ritual association during ceremonies connected with authority")[ (goto: "Africa Q4 no") ]
+
+(link: "A community elder during public ceremonies marking transitions in village life")[ (goto: "Africa Q4 no") ]
+
+(link: "A trained performer during masked events connected with moral instruction")[ (goto: "Africa Q4 no") ]
+
+
+
+:: Africa Q4 no {"position":"1400,1990","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Study the answer, or move on."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Africa Q4 study") ]
+(link: "MOVE ON")[ (set: $tries to 0) (goto: "Africa Done") ]
+](else:)[
+*Burton:* "The identity of the wearer was part of the mask's power — secrecy was essential."
+[[Try again->Africa Q4]]
+]
+
+
+
+:: Africa Q4 ok {"position":"1400,1860","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! A wichi, a ritual specialist, wore it in secrecy.
+[[Finish region->Africa Done]]
+
+
+
+:: Africa Q4 study {"position":"1400,2120","size":"100,100"}
+(set: $tries to 0)
+*History:* The wichi — a ritual specialist — wore this type of mask, and the act of donning and removing it was carried out in secrecy. This concealment was integral to the mask's authority: the wearer disappeared behind it, allowing the mask itself to represent a force beyond any individual.
+
+[[Finish region->Africa Done]]
+
+
+
+:: Americas Done {"position":"0,1450","size":"100,100"}
+*Burton:* "You have deciphered the history of these artifacts. The Americas are complete."
+
+**Region Completed!**
+
+(if: $americasDone is not true)[(set: $fragments to it + 1)(set: $americasDone to true)]
+[[Return to World Map->World map]]
+
+
+
+:: Americas Q1 {"position":"425,450","size":"100,100"}
+
+*Burton holds up the Potlatch Transformation Mask.*
+**Question 1 of 4: What is the central purpose of a potlatch ceremony among Northwest Coast peoples?**
+
+(link: "A competitive auction where families bid wealth to purchase the right to perform certain dances")[ (goto: "Americas Q1 no") ]
+
+(link: "A ceremonial feast where a host gives away large amounts of wealth to guests, who in turn witness and validate the host's status, names, and inherited rights")[ (goto: "Americas Q1 ok") ]
+
+(link: "A seasonal festival thanking the sun for a successful salmon run")[ (goto: "Americas Q1 no") ]
+
+(link: "A private mourning rite, held in secret, to honour a deceased chief")[ (goto: "Americas Q1 no") ]
+
+
+
+:: Americas Q1 no {"position":"425,575","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Here is the answer."
+
+(text-style: "bold")[Right answer: A ceremonial feast where a host gives away large amounts of wealth to guests, who in turn witness and validate the host's status, names, and inherited rights]
+
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Americas Q1 study") ]
+(link: "MOVE ON TO THE NEXT QUESTION")[ (set: $tries to 0) (goto: "Americas Q2") ]
+](else:)[
+*Burton:* "Not quite. Look at the evidence again."
+[[Try again->Americas Q1]]
+]
+
+
+
+:: Americas Q1 ok {"position":"300,575","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+
+Correct! It was a vital way to validate the host's status and rights.
+
+[[Next->Americas Q2]]
+
+
+
+:: Americas Q1 study {"position":"550,575","size":"100,100"}
+(set: $tries to 0)
+*History:* The potlatch is a ceremonial feast at which the host gives away great quantities of wealth. Guests witness and thereby validate the host's status, inherited names, and rights — a form of living record in an oral culture.
+
+[[Continue->Americas Q2]]
+
+
+
+:: Americas Q2 {"position":"300,700","size":"100,100"}
+
+*Burton gestures toward the museum label.*
+**Question 2 of 4: This mask was made by the Kwakwaka'wakw of the Northwest Coast and collected for a foreign museum. During much of the period when masks like this were being gathered, the ceremony they belonged to was:**
+
+(link: "Actively promoted by the Canadian government as a tourist attraction")[ (goto: "Americas Q2 no") ]
+
+(link: "Banned by the Canadian government for decades — a suppression that is part of why so many of these masks ended up in museums far from their communities")[ (goto: "Americas Q2 ok") ]
+
+(link: "Permitted, but restricted by Indigenous law to the summer months only")[ (goto: "Americas Q2 no") ]
+
+(link: "Performed only for European traders, in exchange for goods")[ (goto: "Americas Q2 no") ]
+
+
+:: Americas Q2 no {"position":"300,825","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Here is the answer."
+
+(text-style: "bold")[Right answer: A Canadian government ban on the potlatch ceremony, which forced the confiscation and dispersal of ceremonial items.]
+
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Americas Q2 study") ]
+(link: "MOVE ON TO THE NEXT QUESTION")[ (set: $tries to 0) (goto: "Americas Q3") ]
+](else:)[
+*Burton:* "Not quite. Look at the evidence again."
+[[Try again->Americas Q2]]
+]
+
+
+
+:: Americas Q2 ok {"position":"175,825","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+
+Correct! It was a major policy of cultural assimilation.
+
+[[Next->Americas Q3]]
+
+
+
+:: Americas Q2 study {"position":"425,825","size":"100,100"}
+(set: $tries to 0)
+*History:* Canada banned the potlatch from 1885 to 1951. During this period authorities confiscated ceremonial objects, many of which entered museum collections abroad — which is why so many masks are now far from their communities of origin.
+
+[[Continue->Americas Q3]]
+
+
+
+:: Americas Q3 {"position":"175,950","size":"100,100"}
+
+*Burton examines the papier-mâché skeleton.*
+**Question 3 of 4: This papier mâché skeleton figure comes from which region of the world?**
+
+(link: "Mexico / Central America")[ (goto: "Americas Q3 ok") ]
+(link: "Ancient Mesopotamia")[ (goto: "Americas Q3 no") ]
+(link: "Imperial Japan")[ (goto: "Americas Q3 no") ]
+(link: "The Sahara")[ (goto: "Americas Q3 no") ]
+
+
+
+:: Americas Q3 no {"position":"175,1075","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Here is the answer."
+
+(text-style: "bold")[Right answer: The Day of the Dead (Día de los Muertos), which originates from Mexico.]
+
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Americas Q3 study") ]
+(link: "MOVE ON TO THE NEXT QUESTION")[ (set: $tries to 0) (goto: "Americas Q4") ]
+](else:)[
+*Burton:* "Not quite. Look at the evidence again."
+[[Try again->Americas Q3]]
+]
+
+
+
+:: Americas Q3 ok {"position":"50,1075","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+
+Correct! The tradition originates from Mexico.
+
+[[Next->Americas Q4]]
+
+
+
+:: Americas Q3 study {"position":"300,1075","size":"100,100"}
+(set: $tries to 0)
+*History:* This figure comes from Mexico, where the Day of the Dead (Día de los Muertos) is celebrated each November. The tradition blends Indigenous Mesoamerican beliefs about death with Catholic influences introduced after the Spanish conquest.
+
+[[Continue->Americas Q4]]
+
+
+
+:: Americas Q4 {"position":"50,1200","size":"100,100"}
+
+*Burton points to the life sprouting from the bones.*
+**Question 4 of 4: La Muerte Enramada shows a skeleton with flowers, branches, and live creatures — a bird, lizard, scorpion, snake, butterfly — sprouting from its bones. In the context of the Day of the Dead festival it was made for, what idea is this fusion of skeleton and living things most meant to express?**
+
+(link: "That death is a punishment, and the creeping plants and animals show the body being reclaimed and consumed by nature")[ (goto: "Americas Q4 no") ]
+
+(link: "That life and death are not opposites but a single continuous cycle, with death itself giving rise to new living things")[ (goto: "Americas Q4 ok") ]
+
+(link: "That the dead person was a gardener or naturalist, identified by the plants and animals they cared for in life")[ (goto: "Americas Q4 no") ]
+
+(link: "That the soul must be protected from dangerous creatures — scorpion, snake, spider — on its journey through the underworld")[ (goto: "Americas Q4 no") ]
+
+
+
+:: Americas Q4 no {"position":"50,1325","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Here is the answer."
+
+(text-style: "bold")[Right answer: That life and death are not opposites but a single continuous cycle, with death itself giving rise to new living things.]
+
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Americas Q4 study") ]
+(link: "FINISH REGION")[ (set: $tries to 0) (goto: "Americas Done") ]
+](else:)[
+*Burton:* "Not quite. Look at the evidence again."
+[[Try again->Americas Q4]]
+]
+
+
+
+:: Americas Q4 ok {"position":"0,1325","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+
+Correct! It is a beautiful symbol of an unbroken cycle.
+
+[[Finish region->Americas Done]]
+
+
+
+:: Americas Q4 study {"position":"175,1325","size":"100,100"}
+(set: $tries to 0)
+*History:* The story: La Muerte Enramada embodies the core Day of the Dead idea that life and death form one unbroken cycle. The skeleton is not a symbol of ending but of regeneration — death is the seed from which new life grows.
+
+[[Finish region->Americas Done]]
+
+
+
+:: China Done {"position":"625,1800","size":"100,100"}
+*Burton smiles.*
+"You have mastered the mysteries of Ming-dynasty China!"
+
+**Region Completed!**
+
+(if: $chinaDone is not true)[(set: $fragments to it + 1)(set: $chinaDone to true)]
+[[Return to World Map->World map]]
+
+
+
+:: China Q1 {"position":"625,750","size":"100,100"}
+*Burton points to the twenty curved glazed tiles.*
+**Question 1 of 4: These twenty curved glazed tiles from Ming-dynasty China show four vigorous dragons twisting among flowers, with one dragon chasing a small flaming pearl. What does this scene most likely symbolise?**
+
+(link: "A dangerous sea storm that sailors tried to avoid at all costs")[ (goto: "China Q1 no") ]
+
+[[The emperor's power, good fortune, and cosmic protection over a building->China Q1 ok]]
+
+(link: "A garden party where nobles watched dragons as entertainment")[ (goto: "China Q1 no") ]
+
+(link: "A warning sign that the house belongs to a warrior family")[ (goto: "China Q1 no") ]
+
+
+
+
+:: China Q1 no {"position":"675,875","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not quite. The dragon symbolizes imperial authority and protection."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "China Q1 study") ]
+(link: "MOVE ON TO NEXT QUESTION")[ (set: $tries to 0) (goto: "China Q2") ]
+](else:)[
+*Burton:* "Not quite. Try again."
+[[Try again->China Q1]]
+]
+
+
+
+:: China Q1 ok {"position":"550,875","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! The dragon is a symbol of imperial authority and cosmic power.
+[[Next->China Q2]]
+
+
+
+:: China Q1 study {"position":"800,875","size":"100,100"}
+(set: $tries to 0)
+*History:* The dragon in Chinese tradition is a symbol of imperial authority, cosmic power, and good fortune. The flaming pearl it chases represents wisdom and enlightenment. Such tiles adorned important buildings to signal imperial favour and divine protection.
+
+[[Continue to Question 2->China Q2]]
+
+
+
+:: China Q2 {"position":"625,1000","size":"100,100"}
+*Burton discusses the craftsmanship of the tiles.*
+**Question 2 of 4: These Ming-dynasty roof tiles are made of stoneware and described as "glazed". What does "glazed" mean in this context?**
+
+(link: "The tiles were carved from a single block of coloured stone")[ (goto: "China Q2 no") ]
+
+[[The tiles were covered with a layer of coloured glass-like material that was melted onto the surface in the kiln to make them shiny and waterproof->China Q2 ok]]
+
+(link: "The tiles were painted with watercolour paint after firing")[ (goto: "China Q2 no") ]
+
+(link: "The tiles were wrapped in silk cloth")[ (goto: "China Q2 no") ]
+
+
+
+:: China Q2 no {"position":"675,1125","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not quite. Glazing is a glass-like coating."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "China Q2 study") ]
+(link: "MOVE ON TO NEXT QUESTION")[ (set: $tries to 0) (goto: "China Q3") ]
+](else:)[
+*Burton:* "Not quite. Try again."
+[[Try again->China Q2]]
+]
+
+
+
+:: China Q2 ok {"position":"525,1125","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! Glazing creates a shiny, waterproof surface.
+[[Next->China Q3]]
+
+
+
+:: China Q2 study {"position":"800,1125","size":"100,100"}
+(set: $tries to 0)
+*History:* Glazing means applying a layer of glass-forming minerals to the clay surface, which fuses in the kiln to create a hard, shiny, waterproof coating. The fahua technique uses raised clay outlines to contain separate pools of coloured glaze, like stained glass.
+
+[[Continue to Question 3->China Q3]]
+
+
+
+:: China Q3 {"position":"625,1250","size":"100,100"}
+*Burton presents the large cloisonné enamel jar.*
+**Question 3 of 4: What was this large cloisonné enamel jar most likely used for?**
+
+(link: "As a cooking pot in the palace kitchens")[ (goto: "China Q3 no") ]
+
+[[As a ceremonial or decorative container in the imperial palace, displayed to show wealth and status->China Q3 ok]]
+
+(link: "As a travelling water jar carried by soldiers")[ (goto: "China Q3 no") ]
+
+(link: "As a storage jar buried underground to hide money and jewellery")[ (goto: "China Q3 no") ]
+
+
+
+:: China Q3 no {"position":"675,1375","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not quite. These were ceremonial luxury items."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "China Q3 study") ]
+(link: "MOVE ON TO NEXT QUESTION")[ (set: $tries to 0) (goto: "China Q4") ]
+](else:)[
+*Burton:* "Not quite. Try again."
+[[Try again->China Q3]]
+]
+
+
+
+:: China Q3 ok {"position":"525,1375","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! Such jars were symbols of imperial status.
+[[Next->China Q4]]
+
+
+
+:: China Q3 study {"position":"800,1375","size":"100,100"}
+(set: $tries to 0)
+*History:* Cloisonné enamel was among the most prized luxury arts of imperial China. Objects like this jar were made for the palace as ceremonial vessels or display pieces, broadcasting the wealth, taste, and power of the imperial court.
+
+[[Continue to Question 4->China Q4]]
+
+
+
+:: China Q4 {"position":"625,1500","size":"100,100"}
+*Burton points to the Xuande reign mark on the jar.*
+**Question 4 of 4: This jar was made in the Xuande reign of the Ming dynasty (1426–1435). Which of the following is true about this period?**
+
+[[It is part of the Ming dynasty and is known for some of the earliest dated high-quality imperial cloisonné pieces->China Q4 ok]]
+
+(link: "It belongs to the Qing dynasty and marks the very first invention of cloisonné enamel in China")[ (goto: "China Q4 no") ]
+
+(link: "It is a republican-era period when the imperial court had already been abolished")[ (goto: "China Q4 no") ]
+
+(link: "It is a modern 20th-century period named after the first president of China")[ (goto: "China Q4 no") ]
+
+
+
+:: China Q4 no {"position":"675,1625","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not quite. The Xuande reign is a key period in the Ming dynasty."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "China Q4 study") ]
+(link: "MOVE ON TO NEXT QUESTION")[ (set: $tries to 0) (goto: "China Done") ]
+](else:)[
+*Burton:* "Not quite. Try again."
+[[Try again->China Q4]]
+]
+
+
+
+:: China Q4 ok {"position":"525,1625","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! The Xuande reign was a golden age for imperial craft.
+[[Finish region->China Done]]
+
+
+
+:: China Q4 study {"position":"800,1625","size":"100,100"}
+(set: $tries to 0)
+*History:* The Xuande reign (1426–1435) falls within the Ming dynasty and is celebrated as a golden age for imperial craft. Some of the earliest securely dated high-quality cloisonné enamel pieces survive from this period, making them especially important for art historians.
+
+[[Finish region->China Done]]
+
+
+
+:: Egypt Done {"position":"1100,2250","size":"100,100"}
+*Burton:* "You have explored the Nile and stood before the pharaohs. Egypt is complete."
+
+**Region Completed!**
+
+(if: $egyptDone is not true)[(set: $fragments to it + 1)(set: $egyptDone to true)]
+[[Return to World Map->World map]]
+
+
+
+:: Egypt Q1 {"position":"675,450","size":"100,100"}
+*Burton poses a question.*
+**Question 1 of 4: Burton stands before the colossal granite bust of "The Younger Memnon". Who is depicted by this statue?**
+
+(link: "Tutankhamun")[ (goto: "Egypt Q1 no") ]
+
+[[Ramesses II->Egypt Q1 ok]]
+
+(link: "Ptolemy V")[ (goto: "Egypt Q1 no") ]
+
+(link: "Akhenaten")[ (goto: "Egypt Q1 no") ]
+
+
+
+:: Egypt Q1 no {"position":"1100,430","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Study the answer, or move on."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Egypt Q1 study") ]
+(link: "MOVE ON")[ (set: $tries to 0) (goto: "Egypt Q2") ]
+](else:)[
+*Burton:* "He called himself 'the Great' and reigned for an astonishing sixty-six years."
+[[Try again->Egypt Q1]]
+]
+
+
+
+:: Egypt Q1 ok {"position":"1100,300","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! This is Ramesses II, 'the Great'.
+[[Next->Egypt Q2]]
+
+
+
+:: Egypt Q1 study {"position":"1100,560","size":"100,100"}
+(set: $tries to 0)
+*History:* The Younger Memnon depicts Ramesses II ('the Great'), who ruled ancient Egypt for 66 years. It was carved from a single piece of two-coloured granite and once stood at his memorial temple, the Ramesseum, on the west bank of the Nile at Thebes.
+
+[[Continue->Egypt Q2]]
+
+
+
+:: Egypt Q2 {"position":"1100,690","size":"100,100"}
+*Burton poses a question.*
+**Question 2 of 4: Looking at the head of "The Younger Memnon", which feature identifies the figure as a pharaoh, and what does it suggest about how Ramesses II wanted to be represented?**
+
+[[He wears the nemes headcloth, a royal headdress associated with Egyptian kingship, suggesting the statue presents him not as an ordinary man but as a powerful and legitimate ruler->Egypt Q2 ok]]
+
+(link: "He wears the khepresh crown, often connected with warfare, suggesting the statue mainly presents him as a military commander")[ (goto: "Egypt Q2 no") ]
+
+(link: "He wears the hedjet crown, the white crown of Upper Egypt, suggesting the statue emphasizes his control over southern Egypt only")[ (goto: "Egypt Q2 no") ]
+
+(link: "He wears the deshret crown, the red crown of Lower Egypt, suggesting he is mainly a regional ruler of the Nile Delta")[ (goto: "Egypt Q2 no") ]
+
+
+
+:: Egypt Q2 no {"position":"1100,950","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Study the answer, or move on."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Egypt Q2 study") ]
+(link: "MOVE ON")[ (set: $tries to 0) (goto: "Egypt Q3") ]
+](else:)[
+*Burton:* "Look at the striped cloth falling from the head — one of the most ancient signs of Egyptian royalty."
+[[Try again->Egypt Q2]]
+]
+
+
+
+:: Egypt Q2 ok {"position":"1100,820","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! The nemes headcloth marks him as a king.
+[[Next->Egypt Q3]]
+
+
+
+:: Egypt Q2 study {"position":"1100,1080","size":"100,100"}
+(set: $tries to 0)
+*History:* The nemes headcloth — the striped linen cloth pulled tight across the forehead and falling over the shoulders — is one of the most recognisable emblems of Egyptian kingship. Its presence signals that the statue presents Ramesses not merely as a man but as the embodiment of legitimate royal power.
+
+[[Continue->Egypt Q3]]
+
+
+
+:: Egypt Q3 {"position":"1100,1210","size":"100,100"}
+*Burton poses a question.*
+**Question 3 of 4: Why is the Rosetta Stone considered such a crucial object for the development of Egyptology, rather than simply an important ancient inscription?**
+
+[[Because it preserves the same decree in hieroglyphic, Demotic, and Greek scripts, letting scholars compare them and use the Greek version to help decipher Egyptian hieroglyphs->Egypt Q3 ok]]
+
+(link: "Because it is the oldest surviving Egyptian monument and the first known example of Egyptian writing")[ (goto: "Egypt Q3 no") ]
+
+(link: "Because it contains a complete biography of Tutankhamun, allowing historians to reconstruct the Eighteenth Dynasty")[ (goto: "Egypt Q3 no") ]
+
+(link: "Because it was discovered inside a royal pyramid, proving pyramids were used mainly as archives for political documents")[ (goto: "Egypt Q3 no") ]
+
+
+
+:: Egypt Q3 no {"position":"1100,1470","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Study the answer, or move on."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Egypt Q3 study") ]
+(link: "MOVE ON")[ (set: $tries to 0) (goto: "Egypt Q4") ]
+](else:)[
+*Burton:* "Three scripts, one text — and scholars could read one of the three. The rest followed from there."
+[[Try again->Egypt Q3]]
+]
+
+
+
+:: Egypt Q3 ok {"position":"1100,1340","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! Three scripts, one text — the key to hieroglyphs.
+[[Next->Egypt Q4]]
+
+
+
+:: Egypt Q3 study {"position":"1100,1600","size":"100,100"}
+(set: $tries to 0)
+*History:* The Rosetta Stone carries the same priestly decree in three scripts: hieroglyphic (for temple use), Demotic (for everyday Egyptian readers), and Greek (for the Ptolemaic administration). Because Greek was already understood, scholars — most famously Thomas Young and Jean-Francois Champollion — used it as a key to decipher hieroglyphs, unlocking thousands of years of Egyptian written culture.
+
+[[Continue->Egypt Q4]]
+
+
+
+:: Egypt Q4 {"position":"1100,1730","size":"100,100"}
+*Burton poses a question.*
+**Question 4 of 4: What does the use of three scripts on the Rosetta Stone reveal about society and power in Ptolemaic Egypt?**
+
+[[It shows the decree was meant for different audiences: Egyptian priests, local Egyptian readers, and the Greek-speaking administration->Egypt Q4 ok]]
+
+(link: "It shows that all Egyptians spoke three languages fluently in everyday life")[ (goto: "Egypt Q4 no") ]
+
+(link: "It proves Greek had completely replaced Egyptian culture and religion by 196 BC")[ (goto: "Egypt Q4 no") ]
+
+(link: "It suggests the stone was mainly a language-learning exercise for young scribes")[ (goto: "Egypt Q4 no") ]
+
+
+
+:: Egypt Q4 no {"position":"1100,1990","size":"100,100"}
+(set: $tries to $tries + 1)
+(if: $tries >= 2)[
+*Burton:* "Not to worry — being wrong is part of the journey. Study the answer, or move on."
+(link: "STUDY THE INFORMATION")[ (set: $tries to 0) (goto: "Egypt Q4 study") ]
+(link: "MOVE ON")[ (set: $tries to 0) (goto: "Egypt Done") ]
+](else:)[
+*Burton:* "Each script served a different group — think of who needed to read what, and why."
+[[Try again->Egypt Q4]]
+]
+
+
+
+:: Egypt Q4 ok {"position":"1100,1860","size":"100,100"}
+(set: $tries to 0)
+(set: $score to it + 10)
+Correct! Each script addressed a different audience.
+[[Finish region->Egypt Done]]
+
+
+
+:: Egypt Q4 study {"position":"1100,2120","size":"100,100"}
+(set: $tries to 0)
+*History:* Ptolemaic Egypt was a multilingual society ruled by a Greek-speaking dynasty over an Egyptian-speaking population. The three scripts addressed three distinct groups: hieroglyphic for the priestly elite, Demotic for literate Egyptian speakers, and Greek for the ruling administration — revealing a layered society in which power and religion operated in different languages.
+
+[[Finish region->Egypt Done]]
+
+
+
+:: Finale {"position":"925,450","size":"100,100"}
+*Burton closes his journal.*
+
+"Magnificent, traveller. You have crossed the Americas, China, Egypt and Africa, and met objects you might once have scrolled past. You now know a little of where they come from and why they matter."
+
+**The journey is complete.**
+
+Final score: $score points.
+
+[[Return to the world map->World map]]
+
+
+
+:: World Map {"position":"0,1575","size":"100,100"}
+(goto: "World map")
+
+
+
+:: World map {"position":"675,325","size":"100,100"}
+[[The Americas->Americas Q1]]
+[[China->China Q1]]
+[[Egypt->Egypt Q1]]
+[[Africa->Africa Q1]]
+
+(if: $fragments is 4)[[Complete the journal->Finale]]
+
+
+:: startup [startup] {"position":"675,200","size":"100,100"}
+(set: $tries to 0)
+(set: $fragments to 0)
+(set: $score to 0)
+(set: $americasDone to false)
+(set: $chinaDone to false)
+(set: $egyptDone to false)
+(set: $africaDone to false)
+
