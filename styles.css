@@ -71,6 +71,8 @@ body {
   text-overflow: ellipsis;
 }
 
+.topbar-nav { display: flex; align-items: center; gap: 0.2rem; flex-shrink: 0; }
+
 .status { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
 
 .status-pill {
@@ -573,3 +575,50 @@ body {
 /* Make photo containers show pointer when they have a photo */
 .object-thumb.has-photo,
 .object-plate.has-photo { cursor: zoom-in; }
+
+/* ---------- Design & Diagrams ---------- */
+.diagram-card {
+  margin: 0 0 1.4rem;
+  background: var(--parchment-dark);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.diagram-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1.1rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+.diagram-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: var(--gold);
+}
+.diagram-title {
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--brick);
+}
+.diagram-note {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.diagram-figure {
+  padding: 1.1rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.05), transparent 60%),
+    #0a1422;
+}
+.diagram-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

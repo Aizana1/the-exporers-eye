@@ -15,7 +15,10 @@
 
     <!-- Top status bar -->
     <header class="topbar" id="topbar" hidden>
-      <button class="link-btn" id="homeBtn" type="button" aria-label="Back to the world map">&#9776; Map</button>
+      <span class="topbar-nav">
+        <button class="link-btn" id="homeBtn" type="button" aria-label="Back to the world map">&#9776; Map</button>
+        <button class="link-btn" id="diagramsBtn" type="button" aria-label="Design and diagrams">Diagrams</button>
+      </span>
       <h1 class="topbar-title">The Explorer's Eye</h1>
       <div class="status">
         <span class="score-box" title="Your points so far">
@@ -43,6 +46,7 @@
           </p>
           <button class="btn btn-primary btn-lg" id="startBtn" type="button">Begin the tour</button>
           <p class="fineprint">Best on a phone, tablet or laptop. Tap to play.</p>
+          <p class="fineprint"><button class="link-btn" id="welcomeDiagramsBtn" type="button">View design &amp; diagrams &#8594;</button></p>
         </div>
       </section>
 
@@ -139,6 +143,35 @@
           <p class="final-score">Final score: <strong id="finalScore">0</strong></p>
           <button class="btn btn-primary btn-lg" id="playAgainBtn" type="button">Play again</button>
         </div>
+      </section>
+
+      <!-- 7. Design & Diagrams -->
+      <section class="screen diagrams" id="screen-diagrams" aria-labelledby="diagramsHeading" hidden>
+        <button class="link-btn back" id="diagramsBack" type="button">&#8592; Back</button>
+        <h2 class="screen-heading" id="diagramsHeading">Design &amp; Diagrams</h2>
+        <p class="screen-sub">How the experience is structured — the region map of the museum and the interaction loop a visitor follows for every object.</p>
+
+        <figure class="diagram-card">
+          <figcaption class="diagram-caption">
+            <span class="diagram-kicker">Information architecture</span>
+            <span class="diagram-title">Region map</span>
+            <span class="diagram-note">An entry hub branches freely to four regions — each holding two objects — and all paths converge on the final score screen.</span>
+          </figcaption>
+          <div class="diagram-figure">
+            <img class="diagram-img" src="diagrams/region-map.svg" alt="Region map: an entry hub connects to the Americas, China, Egypt and Africa, each with two objects, all leading to a final score screen." />
+          </div>
+        </figure>
+
+        <figure class="diagram-card">
+          <figcaption class="diagram-caption">
+            <span class="diagram-kicker">UX / interaction</span>
+            <span class="diagram-title">Object interaction loop</span>
+            <span class="diagram-note">A correct answer adds score; a wrong answer allows a retry, and a second wrong answer reveals the answer with study info. Then the next question, then back to the region.</span>
+          </figcaption>
+          <div class="diagram-figure">
+            <img class="diagram-img" src="diagrams/interaction-loop.svg" alt="Interaction loop: visitor opens an object, answers a question, correct answers add score while wrong answers allow a retry then reveal the answer and study info before moving on." />
+          </div>
+        </figure>
       </section>
 
     </main>

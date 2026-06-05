@@ -64,8 +64,12 @@ const screens = {
   region: $("screen-region"),
   quiz: $("screen-quiz"),
   regionDone: $("screen-region-done"),
-  final: $("screen-final")
+  final: $("screen-final"),
+  diagrams: $("screen-diagrams")
 };
+
+// Remember which screen to return to when leaving the diagrams view.
+let diagramsReturn = "welcome";
 
 function show(name) {
   Object.values(screens).forEach((s) => { s.hidden = true; s.classList.remove("active"); });
@@ -348,6 +352,20 @@ function showFinal() {
   show("final");
 }
 
+/* ---------- Design & Diagrams ---------- */
+function openDiagrams() {
+  // Find the currently visible screen so we can return to it.
+  const current = Object.keys(screens).find((k) => !screens[k].hidden);
+  if (current && current !== "diagrams") diagramsReturn = current;
+  show("diagrams");
+}
+
+function closeDiagrams() {
+  if (diagramsReturn === "welcome") show("welcome");
+  else if (diagramsReturn === "region") openRegion(state.current.regionIdx);
+  else show(diagramsReturn);
+}
+
 /* ---------- Reset ---------- */
 function resetGame() {
   state.score = 0;
@@ -365,5 +383,8 @@ $("regionBack").addEventListener("click", renderMap);
 $("quizBack").addEventListener("click", () => openRegion(state.current.regionIdx));
 $("regionDoneBtn").addEventListener("click", renderMap);
 $("playAgainBtn").addEventListener("click", resetGame);
+$("diagramsBtn").addEventListener("click", openDiagrams);
+$("welcomeDiagramsBtn").addEventListener("click", openDiagrams);
+$("diagramsBack").addEventListener("click", closeDiagrams);
 
 refreshStatus();
