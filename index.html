@@ -19,13 +19,12 @@
       <h1 class="topbar-title">The Explorer's Eye</h1>
       <div class="status">
         <span class="score-box" title="Your points so far">
-          <span class="score-star" aria-hidden="true">&#9733;</span>
           <span class="score-text">
             <span class="score-num" id="scoreVal">0</span>
-            <span class="score-label">points</span>
+            <span class="score-label">pts</span>
           </span>
         </span>
-        <span class="status-pill" title="Regions completed">&#127757; <span id="regionsVal">0</span>/4 regions</span>
+        <span class="status-pill" title="Regions completed"><span id="regionsVal">0</span>/4 regions</span>
       </div>
     </header>
 
@@ -36,7 +35,6 @@
         <div class="welcome-inner">
           <p class="eyebrow">A British Museum journey</p>
           <h1 class="title" id="welcomeHeading">The Explorer's Eye</h1>
-          <div class="burton-badge" aria-hidden="true">&#128081;</div>
           <p class="lede">
             "Welcome, traveller. I am <strong>Sir Richard Burton</strong> &mdash; explorer, and your guide.
             Together we shall tour the world through four regions of the British Museum:
@@ -59,8 +57,8 @@
             <rect x="0" y="0" width="1000" height="500" fill="url(#ocean)" />
             <defs>
               <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#cfe3df" />
-                <stop offset="100%" stop-color="#bcd6d3" />
+                <stop offset="0%" stop-color="#071828" />
+                <stop offset="100%" stop-color="#0a2035" />
               </linearGradient>
               <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur stdDeviation="6" result="b" />
@@ -69,7 +67,7 @@
             </defs>
 
             <!-- continents (stylized) -->
-            <g class="continents" fill="#e7d7b0" stroke="#caa86a" stroke-width="2" stroke-linejoin="round">
+            <g class="continents" fill="#1a3a50" stroke="#0e5a72" stroke-width="2" stroke-linejoin="round">
               <path d="M120,140 L210,95 L300,82 L335,120 L312,168 L268,182 L255,235 L208,250 L196,205 L150,182 Z" /><!-- N America -->
               <path d="M250,250 L300,255 L290,285 L300,300 L295,330 L320,360 L300,440 L278,438 L272,360 L255,310 L248,275 Z" /><!-- S America -->
               <path d="M360,70 L420,66 L432,100 L398,118 L364,98 Z" /><!-- Greenland -->
@@ -114,7 +112,7 @@
 
           <!-- Burton feedback area -->
           <div class="burton-msg" id="burtonMsg" hidden>
-            <span class="burton-avatar" aria-hidden="true">&#128081;</span>
+            <span class="burton-avatar" aria-hidden="true">B</span>
             <p id="burtonText"></p>
           </div>
 
@@ -136,7 +134,6 @@
       <!-- 6. Final -->
       <section class="screen final" id="screen-final" aria-labelledby="finalHeading" hidden>
         <div class="done-inner">
-          <div class="burton-badge" aria-hidden="true">&#127881;</div>
           <h2 class="title" id="finalHeading">The tour is complete</h2>
           <p class="lede" id="finalText"></p>
           <p class="final-score">Final score: <strong id="finalScore">0</strong></p>
@@ -149,6 +146,16 @@
     <footer class="footer">
       <p>Built on real <a href="https://www.britishmuseum.org/collection" target="_blank" rel="noopener">British Museum Collection Online</a> records. Guide: Sir Richard Burton.</p>
     </footer>
+  </div>
+
+  <!-- Photo modal -->
+  <div class="photo-modal" id="photoModal" hidden>
+    <div class="photo-modal-overlay" id="photoModalOverlay"></div>
+    <div class="photo-modal-inner">
+      <button class="photo-modal-close" id="photoModalClose" aria-label="Close">&#215;</button>
+      <img id="photoModalImg" src="" alt="" />
+      <p class="photo-modal-title" id="photoModalTitle"></p>
+    </div>
   </div>
 
   <script src="data.js"></script>

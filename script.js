@@ -16,18 +16,10 @@ function svgEl(name, attrs) {
   return el;
 }
 
-// Turn an HTML entity string like "&#127758;" into the real character.
-function decodeEntity(str) {
-  const t = document.createElement("textarea");
-  t.innerHTML = str;
-  return t.value;
-}
-
-// Show the object's emoji immediately, then upgrade to its photo if one loads.
-// If the image is missing (e.g. images/ not yet filled in), the emoji stays.
+// Load the object's photo into el; leaves el empty if image is missing.
 function setMedia(el, obj) {
   el.classList.remove("has-photo");
-  el.textContent = decodeEntity(obj.emoji);
+  el.textContent = "";
   if (!obj.image) return;
   const img = new Image();
   img.alt = obj.title;
@@ -37,6 +29,33 @@ function setMedia(el, obj) {
     el.classList.add("has-photo");
   };
   img.src = obj.image;
+}
+
+/* ---------- Photo modal ---------- */
+function openPhotoModal(src, title) {
+  $("photoModalImg").src = src;
+  $("photoModalImg").alt = title;
+  $("photoModalTitle").textContent = title;
+  $("photoModal").hidden = false;
+}
+
+function closePhotoModal() {
+  $("photoModal").hidden = true;
+  $("photoModalImg").src = "";
+}
+
+$("photoModalClose").addEventListener("click", closePhotoModal);
+$("photoModalOverlay").addEventListener("click", closePhotoModal);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closePhotoModal();
+});
+
+function attachPhotoClick(el, obj) {
+  el.addEventListener("click", (e) => {
+    if (!el.classList.contains("has-photo")) return;
+    e.stopPropagation();
+    openPhotoModal(obj.image, obj.title);
+  });
 }
 
 const screens = {
@@ -73,7 +92,6 @@ function renderMap() {
     const { x, y } = region.map;
     const activate = () => openRegion(idx);
 
-    // --- clickable hotspot on the map ---
     const g = svgEl("g", {
       class: "hotspot" + (done ? " completed" : ""),
       transform: `translate(${x} ${y})`,
@@ -83,14 +101,15 @@ function renderMap() {
     });
     g.style.setProperty("--accent", region.accent);
 
-    // transparent hit area so the dot, label and gap are all clickable
     g.appendChild(svgEl("rect", { class: "hs-hit", x: -54, y: -34, width: 108, height: 90, rx: 12, fill: "transparent" }));
     g.appendChild(svgEl("circle", { class: "hs-pulse", r: 30 }));
     g.appendChild(svgEl("circle", { class: "hs-dot", r: 21 }));
 
-    const icon = svgEl("text", { class: "hs-icon", x: 0, y: 1, "text-anchor": "middle", "dominant-baseline": "central" });
-    icon.textContent = done ? "✓" : decodeEntity(region.icon);
-    g.appendChild(icon);
+    if (done) {
+      const icon = svgEl("text", { class: "hs-icon", x: 0, y: 1, "text-anchor": "middle", "dominant-baseline": "central" });
+      icon.textContent = "✓";
+      g.appendChild(icon);
+    }
 
     const label = svgEl("text", { class: "hs-label", x: 0, y: 42, "text-anchor": "middle" });
     label.textContent = region.name;
@@ -102,7 +121,6 @@ function renderMap() {
     });
     hotspots.appendChild(g);
 
-    // --- legend chip (also clickable; handy on small screens) ---
     const li = document.createElement("li");
     const chip = document.createElement("button");
     chip.type = "button";
@@ -142,8 +160,13 @@ function openRegion(regionIdx) {
         <p class="ot-title">${obj.title}</p>
         <p class="ot-sub">${done ? '<span class="ot-done">&#10003; Visited</span>' : obj.culture}</p>
       </div>`;
-    setMedia(tile.querySelector("[data-thumb]"), obj);
-    tile.addEventListener("click", () => startObject(regionIdx, idx));
+    const thumb = tile.querySelector("[data-thumb]");
+    setMedia(thumb, obj);
+    attachPhotoClick(thumb, obj);
+    tile.addEventListener("click", (e) => {
+      if (thumb.classList.contains("has-photo") && e.target === thumb) return;
+      startObject(regionIdx, idx);
+    });
     grid.appendChild(tile);
   });
   show("region");
@@ -169,19 +192,17 @@ function renderQuestion() {
   const q = obj.questions[state.current.questionIdx];
   state.current.attempts = 0;
 
-  // Object header
   const plate = $("objPlate");
   setMedia(plate, obj);
-  plate.title = `${obj.title} (${obj.museumId})`;
+  attachPhotoClick(plate, obj);
+  plate.title = `${obj.title} — click to enlarge`;
   $("quizObjTitle").textContent = obj.title;
   $("quizObjCulture").textContent = obj.culture;
   $("quizCounter").textContent =
     `${region.name} · Question ${state.current.questionIdx + 1} of ${obj.questions.length}`;
 
-  // Prompt
   $("questionPrompt").textContent = q.prompt;
 
-  // Options
   const list = $("optionsList");
   list.innerHTML = "";
   q.options.forEach((opt, i) => {
@@ -193,7 +214,6 @@ function renderQuestion() {
     list.appendChild(btn);
   });
 
-  // Reset feedback + actions
   hideBurton();
   $("quizActions").innerHTML = "";
 }
@@ -225,16 +245,13 @@ function handleAnswer(choiceIdx, btn) {
     return;
   }
 
-  // Wrong answer
   btn.classList.add("wrong");
   btn.disabled = true;
   state.current.attempts += 1;
 
   if (state.current.attempts === 1) {
-    // First wrong → hint and retry
     setBurton(q.hint + " <em>Try once more.</em>");
   } else {
-    // Second wrong → reveal answer + study-or-skip
     lockOptions();
     revealAnswer();
     setBurton("Burton: \"Not to worry — being wrong is part of the journey. Here is the answer.\"");
@@ -272,7 +289,6 @@ function showStudyOrSkip() {
   actions.append(studyBtn, skipBtn);
 }
 
-// gained: points to add. msg: optional Burton line. keepBurton: don't overwrite existing message.
 function awardAndContinue(gained, msg, keepBurton) {
   state.score += gained;
   refreshStatus();
@@ -298,7 +314,6 @@ function advance() {
     renderQuestion();
     return;
   }
-  // Object finished
   const region = REGIONS[state.current.regionIdx];
   const obj = currentObject();
   state.completedObjects.add(`${region.id}/${obj.id}`);
@@ -315,7 +330,7 @@ function advance() {
       showRegionDone(region);
     }
   } else {
-    openRegion(state.current.regionIdx); // back to object list to pick the other object
+    openRegion(state.current.regionIdx);
   }
 }
 
