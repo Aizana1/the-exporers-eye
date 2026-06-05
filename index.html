@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Explorer's Eye — a web game in which Sir Richard Burton guides you through objects from four regions of the British Museum collection." />
+  <title>The Explorer's Eye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- Top status bar -->
+    <header class="topbar" id="topbar" hidden>
+      <button class="link-btn" id="homeBtn" type="button" aria-label="Back to the world map">&#9776; Map</button>
+      <h1 class="topbar-title">The Explorer's Eye</h1>
+      <div class="status">
+        <span class="status-pill" title="Score">&#9733; <span id="scoreVal">0</span></span>
+        <span class="status-pill" title="Regions completed">&#127757; <span id="regionsVal">0</span>/4</span>
+      </div>
+    </header>
+
+    <main class="stage" id="stage">
+
+      <!-- 1. Welcome -->
+      <section class="screen welcome active" id="screen-welcome" aria-labelledby="welcomeHeading">
+        <div class="welcome-inner">
+          <p class="eyebrow">A British Museum journey</p>
+          <h1 class="title" id="welcomeHeading">The Explorer's Eye</h1>
+          <div class="burton-badge" aria-hidden="true">&#128081;</div>
+          <p class="lede">
+            "Welcome, traveller. I am <strong>Sir Richard Burton</strong> &mdash; explorer, and your guide.
+            Together we shall tour the world through four regions of the British Museum:
+            the Americas, China, Egypt and Africa. For each object I will ask you a question or two.
+            Answer wrongly and you lose nothing &mdash; I will hint, and help, and never leave you stuck."
+          </p>
+          <button class="btn btn-primary btn-lg" id="startBtn" type="button">Begin the tour</button>
+          <p class="fineprint">Best on a phone, tablet or laptop. Tap to play.</p>
+        </div>
+      </section>
+
+      <!-- 2. World map -->
+      <section class="screen map" id="screen-map" aria-labelledby="mapHeading" hidden>
+        <h2 class="screen-heading" id="mapHeading">Choose a region</h2>
+        <p class="screen-sub">Four regions await. Visit them in any order &mdash; complete all four to finish the tour.</p>
+        <div class="region-grid" id="regionGrid"><!-- regions injected --></div>
+      </section>
+
+      <!-- 3. Region: objects -->
+      <section class="screen region" id="screen-region" aria-labelledby="regionHeading" hidden>
+        <button class="link-btn back" id="regionBack" type="button">&#8592; Back to map</button>
+        <h2 class="screen-heading" id="regionHeading">Region</h2>
+        <p class="screen-sub" id="regionBlurb"></p>
+        <div class="object-grid" id="objectGrid"><!-- objects injected --></div>
+      </section>
+
+      <!-- 4. Question -->
+      <section class="screen quiz" id="screen-quiz" aria-labelledby="quizObjTitle" hidden>
+        <button class="link-btn back" id="quizBack" type="button">&#8592; Back</button>
+        <div class="object-card">
+          <div class="object-plate" id="objPlate" aria-hidden="true"></div>
+          <div class="object-meta">
+            <h2 class="object-title" id="quizObjTitle">Object</h2>
+            <p class="object-culture" id="quizObjCulture"></p>
+            <p class="object-counter" id="quizCounter"></p>
+          </div>
+        </div>
+
+        <div class="question-block">
+          <p class="question-prompt" id="questionPrompt">Question</p>
+          <div class="options" id="optionsList" role="group" aria-label="Answer options"></div>
+
+          <!-- Burton feedback area -->
+          <div class="burton-msg" id="burtonMsg" hidden>
+            <span class="burton-avatar" aria-hidden="true">&#128081;</span>
+            <p id="burtonText"></p>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="quiz-actions" id="quizActions"></div>
+        </div>
+      </section>
+
+      <!-- 5. Region complete -->
+      <section class="screen done-region" id="screen-region-done" aria-labelledby="regionDoneHeading" hidden>
+        <div class="done-inner">
+          <div class="done-mark" aria-hidden="true">&#10003;</div>
+          <h2 class="screen-heading" id="regionDoneHeading">Region complete!</h2>
+          <p class="screen-sub" id="regionDoneText"></p>
+          <button class="btn btn-primary btn-lg" id="regionDoneBtn" type="button">Back to the world map</button>
+        </div>
+      </section>
+
+      <!-- 6. Final -->
+      <section class="screen final" id="screen-final" aria-labelledby="finalHeading" hidden>
+        <div class="done-inner">
+          <div class="burton-badge" aria-hidden="true">&#127881;</div>
+          <h2 class="title" id="finalHeading">The tour is complete</h2>
+          <p class="lede" id="finalText"></p>
+          <p class="final-score">Final score: <strong id="finalScore">0</strong></p>
+          <button class="btn btn-primary btn-lg" id="playAgainBtn" type="button">Play again</button>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p>Built on real <a href="https://www.britishmuseum.org/collection" target="_blank" rel="noopener">British Museum Collection Online</a> records. Guide: Sir Richard Burton.</p>
+    </footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
