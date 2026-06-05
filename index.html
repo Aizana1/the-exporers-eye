@@ -18,8 +18,14 @@
       <button class="link-btn" id="homeBtn" type="button" aria-label="Back to the world map">&#9776; Map</button>
       <h1 class="topbar-title">The Explorer's Eye</h1>
       <div class="status">
-        <span class="status-pill" title="Score">&#9733; <span id="scoreVal">0</span></span>
-        <span class="status-pill" title="Regions completed">&#127757; <span id="regionsVal">0</span>/4</span>
+        <span class="score-box" title="Your points so far">
+          <span class="score-star" aria-hidden="true">&#9733;</span>
+          <span class="score-text">
+            <span class="score-num" id="scoreVal">0</span>
+            <span class="score-label">points</span>
+          </span>
+        </span>
+        <span class="status-pill" title="Regions completed">&#127757; <span id="regionsVal">0</span>/4 regions</span>
       </div>
     </header>
 
@@ -45,8 +51,41 @@
       <!-- 2. World map -->
       <section class="screen map" id="screen-map" aria-labelledby="mapHeading" hidden>
         <h2 class="screen-heading" id="mapHeading">Choose a region</h2>
-        <p class="screen-sub">Four regions await. Visit them in any order &mdash; complete all four to finish the tour.</p>
-        <div class="region-grid" id="regionGrid"><!-- regions injected --></div>
+        <p class="screen-sub">Tap a glowing region on the map. Visit them in any order &mdash; complete all four to finish the tour.</p>
+
+        <div class="map-frame">
+          <svg class="world-map" viewBox="0 0 1000 500" role="group" aria-label="World map of the four regions" preserveAspectRatio="xMidYMid meet">
+            <!-- ocean -->
+            <rect x="0" y="0" width="1000" height="500" fill="url(#ocean)" />
+            <defs>
+              <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#cfe3df" />
+                <stop offset="100%" stop-color="#bcd6d3" />
+              </linearGradient>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="6" result="b" />
+                <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+
+            <!-- continents (stylized) -->
+            <g class="continents" fill="#e7d7b0" stroke="#caa86a" stroke-width="2" stroke-linejoin="round">
+              <path d="M120,140 L210,95 L300,82 L335,120 L312,168 L268,182 L255,235 L208,250 L196,205 L150,182 Z" /><!-- N America -->
+              <path d="M250,250 L300,255 L290,285 L300,300 L295,330 L320,360 L300,440 L278,438 L272,360 L255,310 L248,275 Z" /><!-- S America -->
+              <path d="M360,70 L420,66 L432,100 L398,118 L364,98 Z" /><!-- Greenland -->
+              <path d="M470,120 L545,108 L575,128 L560,158 L520,168 L494,182 L470,160 Z" /><!-- Europe -->
+              <path d="M488,196 L545,186 L575,206 L590,236 L572,300 L548,330 L528,378 L508,372 L498,322 L480,272 L478,228 Z" /><!-- Africa -->
+              <path d="M575,128 L700,92 L820,96 L878,140 L860,196 L792,224 L724,214 L690,236 L662,214 L612,200 L578,166 Z" /><!-- Asia -->
+              <path d="M690,236 L724,232 L716,276 L694,292 L680,262 Z" /><!-- India -->
+              <path d="M812,338 L884,330 L906,372 L862,406 L816,392 L800,360 Z" /><!-- Australia -->
+            </g>
+
+            <!-- region hotspots injected here -->
+            <g id="hotspots"></g>
+          </svg>
+        </div>
+
+        <ul class="map-legend" id="mapLegend"><!-- legend chips injected --></ul>
       </section>
 
       <!-- 3. Region: objects -->

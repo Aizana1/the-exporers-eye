@@ -8,6 +8,36 @@ const state = {
 };
 
 const $ = (id) => document.getElementById(id);
+const SVGNS = "http://www.w3.org/2000/svg";
+
+function svgEl(name, attrs) {
+  const el = document.createElementNS(SVGNS, name);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+// Turn an HTML entity string like "&#127758;" into the real character.
+function decodeEntity(str) {
+  const t = document.createElement("textarea");
+  t.innerHTML = str;
+  return t.value;
+}
+
+// Show the object's emoji immediately, then upgrade to its photo if one loads.
+// If the image is missing (e.g. images/ not yet filled in), the emoji stays.
+function setMedia(el, obj) {
+  el.classList.remove("has-photo");
+  el.textContent = decodeEntity(obj.emoji);
+  if (!obj.image) return;
+  const img = new Image();
+  img.alt = obj.title;
+  img.onload = () => {
+    el.textContent = "";
+    el.appendChild(img);
+    el.classList.add("has-photo");
+  };
+  img.src = obj.image;
+}
 
 const screens = {
   welcome: $("screen-welcome"),
@@ -33,22 +63,60 @@ function refreshStatus() {
 
 /* ---------- World map ---------- */
 function renderMap() {
-  const grid = $("regionGrid");
-  grid.innerHTML = "";
+  const hotspots = $("hotspots");
+  const legend = $("mapLegend");
+  hotspots.innerHTML = "";
+  legend.innerHTML = "";
+
   REGIONS.forEach((region, idx) => {
     const done = state.completedRegions.has(region.id);
-    const card = document.createElement("button");
-    card.type = "button";
-    card.className = "region-card" + (done ? " completed" : "");
-    card.style.setProperty("--accent", region.accent);
-    card.innerHTML = `
-      <span class="rc-done">&#10003; Done</span>
-      <div class="rc-icon">${region.icon}</div>
-      <h3 class="rc-name">${region.name}</h3>
-      <p class="rc-blurb">${region.blurb}</p>`;
-    card.addEventListener("click", () => openRegion(idx));
-    grid.appendChild(card);
+    const { x, y } = region.map;
+    const activate = () => openRegion(idx);
+
+    // --- clickable hotspot on the map ---
+    const g = svgEl("g", {
+      class: "hotspot" + (done ? " completed" : ""),
+      transform: `translate(${x} ${y})`,
+      tabindex: "0",
+      role: "button",
+      "aria-label": region.name + (done ? " — completed" : "")
+    });
+    g.style.setProperty("--accent", region.accent);
+
+    // transparent hit area so the dot, label and gap are all clickable
+    g.appendChild(svgEl("rect", { class: "hs-hit", x: -54, y: -34, width: 108, height: 90, rx: 12, fill: "transparent" }));
+    g.appendChild(svgEl("circle", { class: "hs-pulse", r: 30 }));
+    g.appendChild(svgEl("circle", { class: "hs-dot", r: 21 }));
+
+    const icon = svgEl("text", { class: "hs-icon", x: 0, y: 1, "text-anchor": "middle", "dominant-baseline": "central" });
+    icon.textContent = done ? "✓" : decodeEntity(region.icon);
+    g.appendChild(icon);
+
+    const label = svgEl("text", { class: "hs-label", x: 0, y: 42, "text-anchor": "middle" });
+    label.textContent = region.name;
+    g.appendChild(label);
+
+    g.addEventListener("click", activate);
+    g.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); }
+    });
+    hotspots.appendChild(g);
+
+    // --- legend chip (also clickable; handy on small screens) ---
+    const li = document.createElement("li");
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "legend-chip" + (done ? " completed" : "");
+    chip.style.setProperty("--accent", region.accent);
+    chip.innerHTML =
+      `<span class="lc-dot" aria-hidden="true"></span>` +
+      `<span class="lc-name">${region.name}</span>` +
+      (done ? `<span class="lc-check" aria-hidden="true">&#10003;</span>` : "");
+    chip.addEventListener("click", activate);
+    li.appendChild(chip);
+    legend.appendChild(li);
   });
+
   refreshStatus();
   show("map");
 }
@@ -69,11 +137,12 @@ function openRegion(regionIdx) {
     tile.type = "button";
     tile.className = "object-tile";
     tile.innerHTML = `
-      <div class="object-thumb">${obj.emoji}</div>
+      <div class="object-thumb" data-thumb></div>
       <div>
         <p class="ot-title">${obj.title}</p>
         <p class="ot-sub">${done ? '<span class="ot-done">&#10003; Visited</span>' : obj.culture}</p>
       </div>`;
+    setMedia(tile.querySelector("[data-thumb]"), obj);
     tile.addEventListener("click", () => startObject(regionIdx, idx));
     grid.appendChild(tile);
   });
@@ -102,7 +171,7 @@ function renderQuestion() {
 
   // Object header
   const plate = $("objPlate");
-  plate.innerHTML = obj.emoji;
+  setMedia(plate, obj);
   plate.title = `${obj.title} (${obj.museumId})`;
   $("quizObjTitle").textContent = obj.title;
   $("quizObjCulture").textContent = obj.culture;

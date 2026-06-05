@@ -11,9 +11,11 @@ const REGIONS = [
     blurb: "Burton sails for the Northwest Coast, where the Thunderbird lives.",
     icon: "&#127758;", // globe americas
     accent: "#3b6b4f",
+    map: { x: 235, y: 215 }, // position on the world map (viewBox 1000x500)
     objects: [
       {
         id: "potlatch-mask",
+        image: "images/potlatch-mask.jpg",
         title: "Potlatch Transformation Mask",
         museumId: "E_Am1944-02-146",
         culture: "Kwakwaka'wakw people, Northwest Coast",
@@ -39,6 +41,7 @@ const REGIONS = [
       },
       {
         id: "americas-second",
+        image: "images/americas-second.jpg",
         title: "Northwest Coast Carving",
         museumId: "E_Am1990-08-2",
         culture: "Northwest Coast peoples",
@@ -70,9 +73,11 @@ const REGIONS = [
     blurb: "Burton follows the trade roads east to the kilns of Ming China.",
     icon: "&#127757;", // globe asia
     accent: "#a8412b",
+    map: { x: 790, y: 165 },
     objects: [
       {
         id: "dragon-tiles",
+        image: "images/dragon-tiles.jpg",
         title: "Fahua Glazed Dragon Tiles",
         museumId: "A_2006-0503-1-1-20",
         culture: "Ming dynasty China",
@@ -98,6 +103,7 @@ const REGIONS = [
       },
       {
         id: "china-second",
+        image: "images/china-second.jpg",
         title: "Chinese Ceramic Work",
         museumId: "A_1957-0501-1",
         culture: "Imperial China",
@@ -129,9 +135,11 @@ const REGIONS = [
     blurb: "Burton journeys up the Nile to stand before the pharaohs.",
     icon: "&#127963;", // classical building
     accent: "#c79a3a",
+    map: { x: 565, y: 212 },
     objects: [
       {
         id: "younger-memnon",
+        image: "images/younger-memnon.jpg",
         title: "The Younger Memnon",
         museumId: "Y_EA19",
         culture: "Ancient Egypt, reign of Ramesses II",
@@ -164,6 +172,7 @@ const REGIONS = [
       },
       {
         id: "egypt-second",
+        image: "images/egypt-second.jpg",
         title: "Egyptian Sculpture",
         museumId: "Y_EA24",
         culture: "Ancient Egypt",
@@ -195,9 +204,11 @@ const REGIONS = [
     blurb: "Burton's last leg leads to the great city of Ife.",
     icon: "&#127757;", // globe
     accent: "#8a5a2b",
+    map: { x: 535, y: 305 },
     objects: [
       {
         id: "ife-head",
+        image: "images/ife-head.jpg",
         title: "Cast of an Ife Crowned Head",
         museumId: "E_CRS-12",
         culture: "Yoruba, Kingdom of Ife (Nigeria)",
@@ -223,6 +234,7 @@ const REGIONS = [
       },
       {
         id: "africa-second",
+        image: "images/africa-second.jpg",
         title: "African Artwork",
         museumId: "E_Af1979-01-2397",
         culture: "African art",
