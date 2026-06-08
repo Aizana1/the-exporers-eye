@@ -177,6 +177,86 @@ body {
   max-width: 36em;
 }
 
+.welcome-intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  margin: 0 auto 1.6rem;
+  text-align: left;
+  margin: 60px 0;
+}
+
+.burton-portrait {
+  margin: 0;
+  flex: 0 0 auto;
+}
+.burton-portrait img {
+  display: block;
+  width: clamp(120px, 22vw, 190px);
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.speech-bubble {
+  position: relative;
+  margin: 0;
+  max-width: 32em;
+  padding: 1.1rem 1.3rem;
+  background: var(--parchment-dark);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+/* tail pointing left, toward the portrait */
+.speech-bubble::before {
+  content: "";
+  position: absolute;
+  left: -11px;
+  top: 38px;
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-right: 11px solid var(--line);
+}
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 39px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid var(--parchment-dark);
+}
+
+@media (max-width: 560px) {
+  .welcome-intro { flex-direction: column; text-align: center; }
+  /* tail points up, toward the portrait above */
+  .speech-bubble::before {
+    left: 50%;
+    top: -11px;
+    transform: translateX(-50%);
+    border: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 11px solid var(--line);
+  }
+  .speech-bubble::after {
+    left: 50%;
+    top: -9px;
+    transform: translateX(-50%);
+    border: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid var(--parchment-dark);
+  }
+}
+
 .fineprint { color: var(--ink-soft); font-size: 0.85rem; margin-top: 1rem; }
 
 /* ---------- Buttons ---------- */
